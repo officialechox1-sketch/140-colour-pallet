@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Color Reference — 140 CSS Named Colors</title>
+  <meta name="description" content="Created as a comprehensive learning resource for web designers and developers, featuring all official HTML/CSS named colors with HEX, RGB, HSL, and practical code examples to support modern website design." />
+
+  <!-- Favicon: a small inline swatch, no external file needed -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='16' height='16' x='0' y='0' fill='%23E0635A'/%3E%3Crect width='16' height='16' x='16' y='0' fill='%234D8FAC'/%3E%3Crect width='16' height='16' x='0' y='16' fill='%23D9A441'/%3E%3Crect width='16' height='16' x='16' y='16' fill='%236E8C5A'/%3E%3C/svg%3E" />
+
+  <style>
+/* =====================================================================
+   HTML COLOR REFERENCE — STYLE.CSS
+   Design identity: "Swatchbook" — a printer's color-matching book.
+   Cool paper background, ink typography, deep plum accent, amber highlight.
+   Display face: Georgia (serif, characterful). Body: system-ui.
+   Codes/numbers: ui-monospace stack, to read like a printer's reference.
+   ===================================================================== */
+
+:root {
+  /* ---- Light theme tokens ---- */
+  --bg: #eceef0;
+  --bg-soft: #f4f5f6;
+  --ink: #181a1f;
+  --ink-soft: #53565e;
+  --line: rgba(24, 26, 31, 0.12);
+  --card-bg: rgba(255, 255, 255, 0.62);
+  --card-border: rgba(255, 255, 255, 0.8);
+  --card-shadow: 0 1px 2px rgba(24, 26, 31, 0.04), 0 12px 28px -12px rgba(24, 26, 31, 0.18);
+
+  --accent: #4d3a8c;
+  --accent-ink: #ffffff;
+  --amber: #d9912e;
+  --rose: #b8485f;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+
+  --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+}
+
+[data-theme="dark"] {
+  --bg: #13141a;
+  --bg-soft: #191a22;
+  --ink: #ecedf1;
+  --ink-soft: #a3a6b1;
+  --line: rgba(255, 255, 255, 0.12);
+  --card-bg: rgba(255, 255, 255, 0.045);
+  --card-border: rgba(255, 255, 255, 0.09);
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 18px 40px -16px rgba(0, 0, 0, 0.65);
+
+  --accent: #8d77d6;
+  --accent-ink: #14151b;
+  --amber: #e8ab53;
+  --rose: #df7a8d;
+}
+
+/* ---------------------------------------------------------------------
+   RESET & BASE
+   --------------------------------------------------------------------- */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+/* FIX: elements toggled with the HTML "hidden" attribute (modal overlay,
+   scroll-to-top button, clear-search button, etc.) must always disappear,
+   even though some of them also get an explicit "display" value below for
+   when they ARE visible. Without this rule, that explicit display value
+   wins over the browser's default [hidden] style, so the element never
+   actually hides — which is why the popup stayed open after pressing
+   close. This rule guarantees [hidden] always wins. */
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+}
+
+img, svg { display: block; max-width: 100%; }
+button { font-family: inherit; }
+ul { margin: 0; padding: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 10px 16px;
+  border-radius: 0 0 8px 0;
+  z-index: 999;
+}
+.skip-link:focus { left: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   TOPBAR
+   --------------------------------------------------------------------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.brand-chip {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: conic-gradient(from 200deg, #b8485f, #d9912e, #6e8c5a, #4d8fac, #4d3a8c, #b8485f);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25), inset 0 0 0 2px rgba(255,255,255,0.3);
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.topbar__search {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  max-width: 560px;
+}
+
+.icon-search { width: 18px; height: 18px; fill: var(--ink-soft); flex-shrink: 0; }
+
+.topbar__search input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.95rem;
+  outline: none;
+}
+.topbar__search input::placeholder { color: var(--ink-soft); }
+
+.clear-btn {
+  border: none;
+  background: var(--line);
+  color: var(--ink);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.topbar__actions { display: flex; gap: 8px; flex: 0 0 auto; }
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ink);
+  position: relative;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.icon-btn:hover { transform: translateY(-1px); background: var(--card-bg); }
+.icon-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.icon-heart { fill: none; stroke: currentColor; stroke-width: 1.6; }
+.icon-btn[aria-pressed="true"] .icon-heart { fill: var(--rose); stroke: var(--rose); }
+
+.icon-moon { display: none; }
+[data-theme="dark"] .icon-sun { display: none; }
+[data-theme="dark"] .icon-moon { display: block; fill: currentColor; stroke: none; }
+
+/* ---------------------------------------------------------------------
+   HERO
+   --------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: 6px;
+}
+
+.hero__swatchstrip {
+  display: flex;
+  height: 10px;
+  width: 100%;
+}
+.hero__swatchstrip span { flex: 1; }
+
+.hero__inner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 56px 24px 40px;
+  text-align: center;
+}
+
+.hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 14px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.hero__subtitle {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  margin: 14px 0 0;
+}
+
+.hero__stats {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+
+.stat { display: flex; flex-direction: column; align-items: center; }
+.stat__num {
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.stat__label {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+/* ---------------------------------------------------------------------
+   CONTROLS
+   --------------------------------------------------------------------- */
+.controls {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+.controls__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.filter-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip.is-active {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+.sort-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sort-label {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+#sortSelect {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.results-count {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------------------------
+   RECENTLY VIEWED
+   --------------------------------------------------------------------- */
+.recent {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 24px 0;
+}
+.section-heading {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin: 0 0 12px;
+}
+.recent__row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+.recent-chip {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  background: var(--card-bg);
+  border-radius: 999px;
+  padding: 6px 12px 6px 6px;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+.recent-chip__swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* ---------------------------------------------------------------------
+   COLOR GRID & CARDS
+   --------------------------------------------------------------------- */
+.grid-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+  gap: 18px;
+}
+
+.no-results {
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 60px 0;
+  font-size: 1rem;
+}
+
+.color-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.22s cubic-bezier(.2,.8,.2,1), box-shadow 0.22s ease;
+  animation: card-in 0.35s ease backwards;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.color-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 1px 2px rgba(24,26,31,0.05), 0 24px 40px -16px rgba(24,26,31,0.28);
+}
+
+.color-card__swatch {
+  height: 130px;
+  position: relative;
+}
+
+.color-card__fav {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.color-card__fav svg {
+  width: 16px; height: 16px;
+  fill: none; stroke: rgba(0,0,0,0.55); stroke-width: 1.8;
+}
+.color-card__fav.is-fav svg { fill: var(--rose); stroke: var(--rose); }
+
+.color-card__body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.color-card__name {
+  font-weight: 700;
+  font-size: 0.98rem;
+  margin: 0;
+}
+
+.color-card__cssname {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  margin: 0 0 6px;
+}
+
+.color-card__row {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.color-card__copybar {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.copy-btn {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 6px 4px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.copy-btn:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+.category-tag {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(6px);
+  color: rgba(0,0,0,0.6);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------
+   MODAL
+   --------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 14, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 200;
+  animation: fade-in 0.2s ease;
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+.modal {
+  background: var(--bg-soft);
+  border-radius: var(--radius-lg);
+  max-width: 760px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+  animation: modal-in 0.25s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.6);
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 5;
+  line-height: 1;
+}
+
+.modal__preview {
+  height: 200px;
+  position: relative;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.modal__fav {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal__fav svg { width: 20px; height: 20px; fill: none; stroke: rgba(0,0,0,0.6); stroke-width: 1.6; }
+.modal__fav.is-fav svg { fill: var(--rose); stroke: var(--rose); }
+
+.modal__body { padding: 24px 28px 32px; }
+
+.modal__title {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  margin: 0;
+}
+.modal__category {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  margin: 4px 0 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.modal__valuesgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.value-box {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.value-box__label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin: 0 0 4px;
+}
+.value-box__value {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  margin: 0;
+  word-break: break-word;
+}
+
+.modal__copybar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.modal__copybar .copy-btn { flex: 0 0 auto; padding: 8px 14px; font-size: 0.78rem; }
+
+.modal__subhead {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin: 0 0 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+
+.modal__codeblocks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.codeblock {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.codeblock__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.codeblock__head button {
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.72rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+.codeblock pre {
+  margin: 0;
+  padding: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.codeblock .demo-text { font-weight: 600; }
+.codeblock .demo-border {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* ---------------------------------------------------------------------
+   TOAST
+   --------------------------------------------------------------------- */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--ink);
+  color: var(--bg);
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 300;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.toast__swatch {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* ---------------------------------------------------------------------
+   SCROLL TO TOP
+   --------------------------------------------------------------------- */
+.scroll-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 90;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.scroll-top svg { width: 18px; height: 18px; fill: var(--ink); }
+.scroll-top:hover { transform: translateY(-3px); }
+
+/* ---------------------------------------------------------------------
+   FOOTER
+   --------------------------------------------------------------------- */
+.footer {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--line);
+  padding: 48px 24px 24px;
+}
+.footer__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 32px;
+}
+.footer__col h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin: 0 0 10px;
+}
+.footer__col h4 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+}
+.footer__col p { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.5; margin: 0; }
+.footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer__col li { font-size: 0.88rem; color: var(--ink-soft); }
+.footer__col li span { color: var(--ink); font-weight: 700; font-family: var(--font-mono); }
+.footer__bottom {
+  text-align: center;
+  margin: 36px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .footer__inner { grid-template-columns: 1fr; gap: 24px; }
+}
+
+@media (max-width: 720px) {
+  .topbar__inner { flex-wrap: wrap; }
+  .topbar__brand { order: 1; }
+  .topbar__actions { order: 2; }
+  .topbar__search { order: 3; flex: 1 1 100%; max-width: none; }
+  .hero__inner { padding: 40px 20px 32px; }
+  .hero__stats { gap: 22px; }
+  .controls__inner { flex-direction: column; align-items: stretch; }
+  .sort-row { justify-content: space-between; }
+  .color-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+  .color-card__swatch { height: 100px; }
+  .modal__valuesgrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 420px) {
+  .hero__title { font-size: 2rem; }
+  .color-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+}
+
+  </style>
+</head>
+<body data-theme="light">
+
+  <!-- ============== SKIP TO CONTENT (a11y) ============== -->
+  <a class="skip-link" href="#color-grid">Skip to colors</a>
+
+  <!-- ============== STICKY NAVIGATION ============== -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <div class="topbar__brand">
+        <span class="brand-chip" aria-hidden="true"></span>
+        <span class="brand-name">Swatchbook</span>
+      </div>
+
+      <div class="topbar__search">
+        <svg class="icon-search" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 1 0 4.65 13.4l5.23 5.22a1 1 0 0 0 1.42-1.42l-5.23-5.23A7.5 7.5 0 0 0 10.5 3Zm0 2a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Z"/></svg>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search by name or hex…  (e.g. “coral” or “#ff7f50”)"
+          aria-label="Search colors by name or hex code"
+          autocomplete="off"
+        />
+        <button id="clearSearch" class="clear-btn" type="button" aria-label="Clear search" hidden>&times;</button>
+      </div>
+
+      <div class="topbar__actions">
+        <button id="favToggleNav" class="icon-btn" type="button" aria-pressed="false" title="Show favorites only">
+          <svg viewBox="0 0 24 24" class="icon-heart"><path d="M12 21s-7.5-4.6-10.2-9.3C.4 9.1 1.6 5.6 5 4.6c2-.6 4 .2 5.2 1.9C11.4 4.8 13.4 4 15.4 4.6c3.4 1 4.6 4.5 3.2 7.1C19.5 16.4 12 21 12 21Z"/></svg>
+        </button>
+        <button id="darkModeToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-pressed="false">
+          <svg viewBox="0 0 24 24" class="icon-sun"><path d="M12 4V2m0 20v-2M4 12H2m20 0h-2M5.6 5.6 4.2 4.2m15.6 15.6-1.4-1.4M18.4 5.6l1.4-1.4M5.6 18.4l-1.4 1.4M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"/></svg>
+          <svg viewBox="0 0 24 24" class="icon-moon"><path d="M20.7 14.6a8.8 8.8 0 0 1-11-11.1A9.5 9.5 0 1 0 20.7 14.6Z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero">
+    <div class="hero__swatchstrip" id="swatchStrip" aria-hidden="true"></div>
+    <div class="hero__inner">
+      <p class="hero__eyebrow">A reference, not a picker</p>
+      <h1 class="hero__title">HTML Color Reference</h1>
+      <p class="hero__subtitle">140 Official HTML/CSS Named Colors</p>
+
+      <div class="hero__stats">
+        <div class="stat">
+          <span class="stat__num" id="totalColorsStat">0</span>
+          <span class="stat__label">named colors</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num" id="categoryCountStat">0</span>
+          <span class="stat__label">categories</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num" id="favCountStat">0</span>
+          <span class="stat__label">favorited</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CONTROLS ============== -->
+  <section class="controls" aria-label="Filter and sort colors">
+    <div class="controls__inner">
+
+      <div class="filter-row" id="categoryFilters" role="group" aria-label="Filter by category">
+        <button class="chip is-active" data-category="all" type="button">All</button>
+        <!-- category chips are injected by JS -->
+      </div>
+
+      <div class="sort-row">
+        <label for="sortSelect" class="sort-label">Sort by</label>
+        <select id="sortSelect">
+          <option value="alphabetical">Alphabetical (A–Z)</option>
+          <option value="brightness-asc">Brightness (dark → light)</option>
+          <option value="brightness-desc">Brightness (light → dark)</option>
+          <option value="hue">Hue (color wheel)</option>
+        </select>
+
+        <span class="results-count" id="resultsCount"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== RECENTLY VIEWED ============== -->
+  <section class="recent" id="recentSection" hidden>
+    <div class="recent__inner">
+      <h2 class="section-heading">Recently viewed</h2>
+      <div class="recent__row" id="recentRow"></div>
+    </div>
+  </section>
+
+  <!-- ============== COLOR GRID ============== -->
+  <main>
+    <section class="grid-section">
+      <div id="color-grid" class="color-grid"></div>
+      <p class="no-results" id="noResults" hidden>No colors match your search. Try a different name or hex code.</p>
+    </section>
+  </main>
+
+  <!-- ============== MODAL ============== -->
+  <div class="modal-overlay" id="modalOverlay" hidden>
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal__close" id="modalClose" type="button" aria-label="Close dialog">&times;</button>
+
+      <div class="modal__preview" id="modalPreview">
+        <button class="modal__fav" id="modalFav" type="button" title="Toggle favorite">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10.2-9.3C.4 9.1 1.6 5.6 5 4.6c2-.6 4 .2 5.2 1.9C11.4 4.8 13.4 4 15.4 4.6c3.4 1 4.6 4.5 3.2 7.1C19.5 16.4 12 21 12 21Z"/></svg>
+        </button>
+      </div>
+
+      <div class="modal__body">
+        <h2 class="modal__title" id="modalTitle">Color name</h2>
+        <p class="modal__category" id="modalCategory">Category</p>
+
+        <div class="modal__valuesgrid" id="modalValues"></div>
+
+        <div class="modal__copybar" id="modalCopybar"></div>
+
+        <h3 class="modal__subhead">Code examples</h3>
+        <div class="modal__codeblocks" id="modalCodeblocks"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== TOAST ============== -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ============== SCROLL TO TOP ============== -->
+  <button class="scroll-top" id="scrollTop" type="button" aria-label="Scroll to top" hidden>
+    <svg viewBox="0 0 24 24"><path d="M12 5 5 12h4v7h6v-7h4z"/></svg>
+  </button>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <h3>Swatchbook</h3>
+        <p>Created as a comprehensive learning resource for web designers and developers, featuring all official HTML/CSS named colors with HEX, RGB, HSL, and practical code examples to support modern website design.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Reference</h4>
+        <ul>
+          <li>Total colors: <span id="footerTotal">0</span></li>
+          <li>HTML version: HTML5</li>
+          <li>CSS version: CSS Color Module Level 4</li>
+        </ul>
+      </div>
+      <div class="footer__col">
+       <h4>Author</h4>
+<ul>
+  <li>Designed and developed by <strong>BlueLeaf Press Editorial Team</strong></li>
+  <li>Created as a complete HTML & CSS Color Reference</li>
+  <li>Dedicated to web designers, developers, and students worldwide</li>
+</ul>
+      </div>
+    </div>
+    <p class="footer__bottom">&copy; <span id="footerYear"></span> Swatchbook — HTML Color Reference.</p>
+  </footer>
+
+  <script>
+/* =====================================================================
+   HTML COLOR REFERENCE — SCRIPT.JS
+   Vanilla JS only. No build step, no dependencies.
+   Sections:
+     1. Color dataset (every official HTML/CSS named color)
+     2. Color math helpers (hex -> rgb -> hsl -> hsv, brightness, category)
+     3. State (search, category, sort, favorites, recents, theme)
+     4. Rendering (grid, cards, chips, recent strip, hero swatch strip)
+     5. Modal
+     6. Events (search, filters, sort, theme, scroll-to-top, copy/toast)
+     7. Init
+   ===================================================================== */
+
+(function () {
+  "use strict";
+
+  /* -------------------------------------------------------------------
+     1. COLOR DATASET
+     Every entry: a human-readable display name + its official hex value.
+     The CSS keyword itself is simply the name with spaces removed and
+     lower-cased (e.g. "Light Sea Green" -> "lightseagreen"), which is
+     exactly how the CSS specification defines these keywords.
+     Includes every standard alias (Gray/Grey, DarkGray/DarkGrey, etc.)
+     ------------------------------------------------------------------- */
+  const RAW_COLORS = [
+    ["Alice Blue", "#F0F8FF"], ["Antique White", "#FAEBD7"], ["Aqua", "#00FFFF"],
+    ["Aquamarine", "#7FFFD4"], ["Azure", "#F0FFFF"], ["Beige", "#F5F5DC"],
+    ["Bisque", "#FFE4C4"], ["Black", "#000000"], ["Blanched Almond", "#FFEBCD"],
+    ["Blue", "#0000FF"], ["Blue Violet", "#8A2BE2"], ["Brown", "#A52A2A"],
+    ["Burly Wood", "#DEB887"], ["Cadet Blue", "#5F9EA0"], ["Chartreuse", "#7FFF00"],
+    ["Chocolate", "#D2691E"], ["Coral", "#FF7F50"], ["Cornflower Blue", "#6495ED"],
+    ["Cornsilk", "#FFF8DC"], ["Crimson", "#DC143C"], ["Cyan", "#00FFFF"],
+    ["Dark Blue", "#00008B"], ["Dark Cyan", "#008B8B"], ["Dark Goldenrod", "#B8860B"],
+    ["Dark Gray", "#A9A9A9"], ["Dark Green", "#006400"], ["Dark Grey", "#A9A9A9"],
+    ["Dark Khaki", "#BDB76B"], ["Dark Magenta", "#8B008B"], ["Dark Olive Green", "#556B2F"],
+    ["Dark Orange", "#FF8C00"], ["Dark Orchid", "#9932CC"], ["Dark Red", "#8B0000"],
+    ["Dark Salmon", "#E9967A"], ["Dark Sea Green", "#8FBC8F"], ["Dark Slate Blue", "#483D8B"],
+    ["Dark Slate Gray", "#2F4F4F"], ["Dark Slate Grey", "#2F4F4F"], ["Dark Turquoise", "#00CED1"],
+    ["Dark Violet", "#9400D3"], ["Deep Pink", "#FF1493"], ["Deep Sky Blue", "#00BFFF"],
+    ["Dim Gray", "#696969"], ["Dim Grey", "#696969"], ["Dodger Blue", "#1E90FF"],
+    ["Fire Brick", "#B22222"], ["Floral White", "#FFFAF0"], ["Forest Green", "#228B22"],
+    ["Fuchsia", "#FF00FF"], ["Gainsboro", "#DCDCDC"], ["Ghost White", "#F8F8FF"],
+    ["Gold", "#FFD700"], ["Goldenrod", "#DAA520"], ["Gray", "#808080"],
+    ["Green", "#008000"], ["Green Yellow", "#ADFF2F"], ["Grey", "#808080"],
+    ["Honeydew", "#F0FFF0"], ["Hot Pink", "#FF69B4"], ["Indian Red", "#CD5C5C"],
+    ["Indigo", "#4B0082"], ["Ivory", "#FFFFF0"], ["Khaki", "#F0E68C"],
+    ["Lavender", "#E6E6FA"], ["Lavender Blush", "#FFF0F5"], ["Lawn Green", "#7CFC00"],
+    ["Lemon Chiffon", "#FFFACD"], ["Light Blue", "#ADD8E6"], ["Light Coral", "#F08080"],
+    ["Light Cyan", "#E0FFFF"], ["Light Goldenrod Yellow", "#FAFAD2"], ["Light Gray", "#D3D3D3"],
+    ["Light Green", "#90EE90"], ["Light Grey", "#D3D3D3"], ["Light Pink", "#FFB6C1"],
+    ["Light Salmon", "#FFA07A"], ["Light Sea Green", "#20B2AA"], ["Light Sky Blue", "#87CEFA"],
+    ["Light Slate Gray", "#778899"], ["Light Slate Grey", "#778899"], ["Light Steel Blue", "#B0C4DE"],
+    ["Light Yellow", "#FFFFE0"], ["Lime", "#00FF00"], ["Lime Green", "#32CD32"],
+    ["Linen", "#FAF0E6"], ["Magenta", "#FF00FF"], ["Maroon", "#800000"],
+    ["Medium Aquamarine", "#66CDAA"], ["Medium Blue", "#0000CD"], ["Medium Orchid", "#BA55D3"],
+    ["Medium Purple", "#9370DB"], ["Medium Sea Green", "#3CB371"], ["Medium Slate Blue", "#7B68EE"],
+    ["Medium Spring Green", "#00FA9A"], ["Medium Turquoise", "#48D1CC"], ["Medium Violet Red", "#C71585"],
+    ["Midnight Blue", "#191970"], ["Mint Cream", "#F5FFFA"], ["Misty Rose", "#FFE4E1"],
+    ["Moccasin", "#FFE4B5"], ["Navajo White", "#FFDEAD"], ["Navy", "#000080"],
+    ["Old Lace", "#FDF5E6"], ["Olive", "#808000"], ["Olive Drab", "#6B8E23"],
+    ["Orange", "#FFA500"], ["Orange Red", "#FF4500"], ["Orchid", "#DA70D6"],
+    ["Pale Goldenrod", "#EEE8AA"], ["Pale Green", "#98FB98"], ["Pale Turquoise", "#AFEEEE"],
+    ["Pale Violet Red", "#DB7093"], ["Papaya Whip", "#FFEFD5"], ["Peach Puff", "#FFDAB9"],
+    ["Peru", "#CD853F"], ["Pink", "#FFC0CB"], ["Plum", "#DDA0DD"],
+    ["Powder Blue", "#B0E0E6"], ["Purple", "#800080"], ["Rebecca Purple", "#663399"],
+    ["Red", "#FF0000"], ["Rosy Brown", "#BC8F8F"], ["Royal Blue", "#4169E1"],
+    ["Saddle Brown", "#8B4513"], ["Salmon", "#FA8072"], ["Sandy Brown", "#F4A460"],
+    ["Sea Green", "#2E8B57"], ["Seashell", "#FFF5EE"], ["Sienna", "#A0522D"],
+    ["Silver", "#C0C0C0"], ["Sky Blue", "#87CEEB"], ["Slate Blue", "#6A5ACD"],
+    ["Slate Gray", "#708090"], ["Slate Grey", "#708090"], ["Snow", "#FFFAFA"],
+    ["Spring Green", "#00FF7F"], ["Steel Blue", "#4682B4"], ["Tan", "#D2B48C"],
+    ["Teal", "#008080"], ["Thistle", "#D8BFD8"], ["Tomato", "#FF6347"],
+    ["Turquoise", "#40E0D0"], ["Violet", "#EE82EE"], ["Wheat", "#F5DEB3"],
+    ["White", "#FFFFFF"], ["White Smoke", "#F5F5F5"], ["Yellow", "#FFFF00"],
+    ["Yellow Green", "#9ACD32"]
+  ];
+
+  /* -------------------------------------------------------------------
+     2. COLOR MATH
+     ------------------------------------------------------------------- */
+  function hexToRgb(hex) {
+    const clean = hex.replace("#", "");
+    return {
+      r: parseInt(clean.substring(0, 2), 16),
+      g: parseInt(clean.substring(2, 4), 16),
+      b: parseInt(clean.substring(4, 6), 16)
+    };
+  }
+
+  function rgbToHsl(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+    const d = max - min;
+    if (d === 0) { h = 0; s = 0; }
+    else {
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r: h = ((g - b) / d) % 6; break;
+        case g: h = (b - r) / d + 2; break;
+        default: h = (r - g) / d + 4;
+      }
+      h *= 60;
+      if (h < 0) h += 360;
+    }
+    return { h: Math.round(h), s: Math.round(s * 100), l: Math.round(l * 100) };
+  }
+
+  function rgbToHsv(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    const d = max - min;
+    let h;
+    if (d === 0) h = 0;
+    else if (max === r) h = ((g - b) / d) % 6;
+    else if (max === g) h = (b - r) / d + 2;
+    else h = (r - g) / d + 4;
+    h = Math.round(h * 60);
+    if (h < 0) h += 360;
+    const s = max === 0 ? 0 : d / max;
+    const v = max;
+    return { h, s: Math.round(s * 100), v: Math.round(v * 100) };
+  }
+
+  function brightness(r, g, b) {
+    // Perceived brightness (0-255 scale)
+    return (r * 299 + g * 587 + b * 114) / 1000;
+  }
+
+  /* Assign a filterable category from hue/saturation/lightness. */
+  function getCategory(s, l, h) {
+    if (s <= 8) {
+      if (l >= 92) return "White";
+      if (l <= 14) return "Black";
+      return "Gray";
+    }
+    if (h >= 20 && h < 50 && l < 75 && s < 85) return "Brown";
+    if (h < 15 || h >= 345) return "Red";
+    if (h < 45) return "Orange";
+    if (h < 65) return "Yellow";
+    if (h < 170) return "Green";
+    if (h < 200) return "Cyan";
+    if (h < 255) return "Blue";
+    if (h < 290) return "Purple";
+    return "Pink";
+  }
+
+  const CATEGORY_ORDER = ["Red", "Pink", "Purple", "Blue", "Cyan", "Green", "Yellow", "Orange", "Brown", "White", "Gray", "Black"];
+
+  /* Build the full, enriched dataset once. */
+  const COLORS = RAW_COLORS.map(([name, hex]) => {
+    const cssName = name.replace(/\s+/g, "").toLowerCase();
+    const { r, g, b } = hexToRgb(hex);
+    const hsl = rgbToHsl(r, g, b);
+    const hsv = rgbToHsv(r, g, b);
+    const bright = brightness(r, g, b);
+    const category = getCategory(hsl.s, hsl.l, hsl.h);
+    return {
+      id: cssName,
+      name,
+      cssName,
+      hex: hex.toUpperCase(),
+      r, g, b,
+      h: hsl.h, s: hsl.s, l: hsl.l,
+      hv: hsv.h, sv: hsv.s, v: hsv.v,
+      brightness: bright,
+      category
+    };
+  });
+
+  const colorById = {};
+  COLORS.forEach((c) => { colorById[c.id] = c; });
+
+  /* -------------------------------------------------------------------
+     3. STATE
+     ------------------------------------------------------------------- */
+  const state = {
+    search: "",
+    category: "all",
+    sort: "alphabetical",
+    favOnly: false,
+    favorites: loadJSON("swatchbook:favorites", []),
+    recents: loadJSON("swatchbook:recents", [])
+  };
+
+  function loadJSON(key, fallback) {
+    try {
+      const v = JSON.parse(localStorage.getItem(key));
+      return Array.isArray(v) ? v : fallback;
+    } catch (e) { return fallback; }
+  }
+  function saveJSON(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* storage unavailable */ }
+  }
+
+  /* -------------------------------------------------------------------
+     DOM REFERENCES
+     ------------------------------------------------------------------- */
+  const grid = document.getElementById("color-grid");
+  const noResults = document.getElementById("noResults");
+  const searchInput = document.getElementById("searchInput");
+  const clearSearchBtn = document.getElementById("clearSearch");
+  const categoryFilters = document.getElementById("categoryFilters");
+  const sortSelect = document.getElementById("sortSelect");
+  const resultsCount = document.getElementById("resultsCount");
+  const favToggleNav = document.getElementById("favToggleNav");
+  const darkModeToggle = document.getElementById("darkModeToggle");
+  const scrollTopBtn = document.getElementById("scrollTop");
+  const swatchStrip = document.getElementById("swatchStrip");
+  const recentSection = document.getElementById("recentSection");
+  const recentRow = document.getElementById("recentRow");
+  const toast = document.getElementById("toast");
+
+  const modalOverlay = document.getElementById("modalOverlay");
+  const modalClose = document.getElementById("modalClose");
+  const modalPreview = document.getElementById("modalPreview");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalCategory = document.getElementById("modalCategory");
+  const modalValues = document.getElementById("modalValues");
+  const modalCopybar = document.getElementById("modalCopybar");
+  const modalCodeblocks = document.getElementById("modalCodeblocks");
+  const modalFav = document.getElementById("modalFav");
+
+  /* -------------------------------------------------------------------
+     4. RENDERING
+     ------------------------------------------------------------------- */
+
+  function readableTextOn(bgBrightness) {
+    return bgBrightness > 150 ? "#14151b" : "#ffffff";
+  }
+
+  function buildCategoryChips() {
+    CATEGORY_ORDER.forEach((cat) => {
+      if (!COLORS.some((c) => c.category === cat)) return;
+      const btn = document.createElement("button");
+      btn.className = "chip";
+      btn.type = "button";
+      btn.dataset.category = cat;
+      btn.textContent = cat;
+      categoryFilters.appendChild(btn);
+    });
+  }
+
+  function buildSwatchStrip() {
+    // A literal strip of swatches across the top of the hero — the
+    // "signature" visual element: this page IS a swatch book.
+    const sample = COLORS.filter((_, i) => i % 3 === 0);
+    sample.forEach((c) => {
+      const span = document.createElement("span");
+      span.style.background = c.hex;
+      swatchStrip.appendChild(span);
+    });
+  }
+
+  function getFilteredSortedColors() {
+    let list = COLORS.slice();
+
+    if (state.category !== "all") {
+      list = list.filter((c) => c.category === state.category);
+    }
+
+    if (state.favOnly) {
+      list = list.filter((c) => state.favorites.includes(c.id));
+    }
+
+    if (state.search.trim()) {
+      const q = state.search.trim().toLowerCase().replace(/^#/, "");
+      list = list.filter((c) => {
+        return (
+          c.name.toLowerCase().includes(state.search.trim().toLowerCase()) ||
+          c.cssName.includes(q) ||
+          c.hex.toLowerCase().replace("#", "").includes(q)
+        );
+      });
+    }
+
+    switch (state.sort) {
+      case "brightness-asc":
+        list.sort((a, b) => a.brightness - b.brightness);
+        break;
+      case "brightness-desc":
+        list.sort((a, b) => b.brightness - a.brightness);
+        break;
+      case "hue":
+        list.sort((a, b) => a.h - b.h || a.s - b.s);
+        break;
+      default:
+        list.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    return list;
+  }
+
+  function renderGrid() {
+    const list = getFilteredSortedColors();
+    grid.innerHTML = "";
+
+    if (list.length === 0) {
+      noResults.hidden = false;
+    } else {
+      noResults.hidden = true;
+      const frag = document.createDocumentFragment();
+      list.forEach((c, i) => frag.appendChild(buildCard(c, i)));
+      grid.appendChild(frag);
+    }
+
+    resultsCount.textContent = list.length === COLORS.length
+      ? `${COLORS.length} colors`
+      : `${list.length} of ${COLORS.length} colors`;
+  }
+
+  function buildCard(c, index) {
+    const card = document.createElement("article");
+    card.className = "color-card";
+    card.style.animationDelay = Math.min(index * 12, 300) + "ms";
+    card.dataset.id = c.id;
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-label", `Open details for ${c.name}`);
+
+    const isFav = state.favorites.includes(c.id);
+    const textColor = readableTextOn(c.brightness);
+
+    card.innerHTML = `
+      <div class="color-card__swatch" style="background:${c.hex};">
+        <button class="color-card__fav ${isFav ? "is-fav" : ""}" type="button" data-action="fav" aria-label="Toggle favorite for ${c.name}" aria-pressed="${isFav}">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10.2-9.3C.4 9.1 1.6 5.6 5 4.6c2-.6 4 .2 5.2 1.9C11.4 4.8 13.4 4 15.4 4.6c3.4 1 4.6 4.5 3.2 7.1C19.5 16.4 12 21 12 21Z"/></svg>
+        </button>
+        <span class="category-tag" style="color:${textColor === "#ffffff" ? "rgba(0,0,0,.6)" : "rgba(0,0,0,.6)"}">${c.category}</span>
+      </div>
+      <div class="color-card__body">
+        <p class="color-card__name">${c.name}</p>
+        <p class="color-card__cssname">${c.cssName}</p>
+        <div class="color-card__row"><span>HEX</span><span>${c.hex}</span></div>
+        <div class="color-card__row"><span>RGB</span><span>${c.r}, ${c.g}, ${c.b}</span></div>
+        <div class="color-card__row"><span>HSL</span><span>${c.h}°, ${c.s}%, ${c.l}%</span></div>
+        <div class="color-card__copybar">
+          <button class="copy-btn" type="button" data-action="copy-hex">Hex</button>
+          <button class="copy-btn" type="button" data-action="copy-rgb">RGB</button>
+          <button class="copy-btn" type="button" data-action="copy-hsl">HSL</button>
+        </div>
+      </div>
+    `;
+
+    return card;
+  }
+
+  function renderRecents() {
+    const ids = state.recents.filter((id) => colorById[id]);
+    if (ids.length === 0) {
+      recentSection.hidden = true;
+      return;
+    }
+    recentSection.hidden = false;
+    recentRow.innerHTML = "";
+    ids.forEach((id) => {
+      const c = colorById[id];
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "recent-chip";
+      chip.dataset.id = c.id;
+      chip.innerHTML = `<span class="recent-chip__swatch" style="background:${c.hex}"></span>${c.name}`;
+      recentRow.appendChild(chip);
+    });
+  }
+
+  function updateHeaderStats() {
+    document.getElementById("totalColorsStat").textContent = COLORS.length;
+    document.getElementById("categoryCountStat").textContent = CATEGORY_ORDER.filter((cat) => COLORS.some((c) => c.category === cat)).length;
+    document.getElementById("favCountStat").textContent = state.favorites.length;
+    document.getElementById("footerTotal").textContent = COLORS.length;
+  }
+
+  /* -------------------------------------------------------------------
+     5. MODAL
+     ------------------------------------------------------------------- */
+
+  function openModal(id) {
+    const c = colorById[id];
+    if (!c) return;
+
+    addToRecents(id);
+    renderRecents();
+
+    const textColor = readableTextOn(c.brightness);
+    const isFav = state.favorites.includes(c.id);
+
+    modalPreview.style.background = c.hex;
+    modalPreview.style.color = textColor;
+    modalFav.className = "modal__fav" + (isFav ? " is-fav" : "");
+    modalFav.setAttribute("aria-pressed", isFav);
+    modalFav.dataset.id = c.id;
+
+    modalTitle.textContent = c.name;
+    modalCategory.textContent = `${c.category} · CSS keyword: ${c.cssName}`;
+
+    modalValues.innerHTML = [
+      { label: "HEX", value: c.hex },
+      { label: "RGB", value: `rgb(${c.r}, ${c.g}, ${c.b})` },
+      { label: "HSL", value: `hsl(${c.h}, ${c.s}%, ${c.l}%)` },
+      { label: "HSV", value: `hsv(${c.hv}, ${c.sv}%, ${c.v}%)` }
+    ].map((v) => `
+      <div class="value-box">
+        <p class="value-box__label">${v.label}</p>
+        <p class="value-box__value">${v.value}</p>
+      </div>
+    `).join("");
+
+    modalCopybar.innerHTML = `
+      <button class="copy-btn" type="button" data-action="copy-hex">Copy HEX</button>
+      <button class="copy-btn" type="button" data-action="copy-rgb">Copy RGB</button>
+      <button class="copy-btn" type="button" data-action="copy-hsl">Copy HSL</button>
+      <button class="copy-btn" type="button" data-action="copy-hsv">Copy HSV</button>
+      <button class="copy-btn" type="button" data-action="copy-name">Copy CSS Name</button>
+    `;
+    modalCopybar.dataset.id = c.id;
+
+    const cssExample = `.element {\n  color: ${c.cssName};\n}`;
+    const htmlExample = `<div style="background-color: ${c.cssName};">\n  ${c.name}\n</div>`;
+    const bgExample = `.box {\n  background-color: ${c.hex};\n}`;
+    const textExample = `.label {\n  color: ${c.hex};\n}`;
+    const borderExample = `.card {\n  border: 2px solid ${c.hex};\n}`;
+
+    modalCodeblocks.innerHTML = [
+      { title: "CSS code example", code: cssExample },
+      { title: "HTML example", code: htmlExample },
+      { title: "CSS background example", code: bgExample, demo: `<div style="background:${c.hex};color:${textColor};padding:10px 14px;border-radius:8px;font-family:ui-monospace,monospace;font-size:13px;">background-color: ${c.hex}</div>` },
+      { title: "Text color example", code: textExample, demo: `<p class="demo-text" style="color:${c.hex};">${c.name} text color</p>` },
+      { title: "Border color example", code: borderExample, demo: `<span class="demo-border" style="border:2px solid ${c.hex};">Bordered element</span>` }
+    ].map((block, i) => `
+      <div class="codeblock">
+        <div class="codeblock__head">
+          <span>${block.title}</span>
+          <button type="button" data-action="copy-code" data-code-index="${i}">Copy</button>
+        </div>
+        ${block.demo ? `<div style="padding:12px;">${block.demo}</div>` : ""}
+        <pre data-code-index="${i}">${escapeHtml(block.code)}</pre>
+      </div>
+    `).join("");
+
+    // Store raw code strings for the copy buttons to read without re-escaping.
+    modalCodeblocks._codes = [cssExample, htmlExample, bgExample, textExample, borderExample];
+
+    modalOverlay.hidden = false;
+    document.body.style.overflow = "hidden";
+    modalClose.focus();
+  }
+
+  function closeModal() {
+    modalOverlay.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, (m) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[m]));
+  }
+
+  /* -------------------------------------------------------------------
+     FAVORITES / RECENTS
+     ------------------------------------------------------------------- */
+  function toggleFavorite(id) {
+    const idx = state.favorites.indexOf(id);
+    if (idx === -1) state.favorites.push(id);
+    else state.favorites.splice(idx, 1);
+    saveJSON("swatchbook:favorites", state.favorites);
+    updateHeaderStats();
+  }
+
+  function addToRecents(id) {
+    state.recents = state.recents.filter((x) => x !== id);
+    state.recents.unshift(id);
+    state.recents = state.recents.slice(0, 12);
+    saveJSON("swatchbook:recents", state.recents);
+  }
+
+  /* -------------------------------------------------------------------
+     COPY + TOAST
+     ------------------------------------------------------------------- */
+  function copyText(text, message, swatchHex) {
+    const finish = () => showToast(message, swatchHex);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(finish).catch(() => fallbackCopy(text, finish));
+    } else {
+      fallbackCopy(text, finish);
+    }
+  }
+
+  function fallbackCopy(text, cb) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); } catch (e) { /* no-op */ }
+    document.body.removeChild(ta);
+    cb();
+  }
+
+  let toastTimer = null;
+  function showToast(message, swatchHex) {
+    clearTimeout(toastTimer);
+    toast.innerHTML = (swatchHex ? `<span class="toast__swatch" style="background:${swatchHex}"></span>` : "") + message;
+    toast.classList.add("is-visible");
+    toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1800);
+  }
+
+  function copyForCard(c, kind) {
+    if (kind === "hex") copyText(c.hex, `Copied ${c.hex}`, c.hex);
+    if (kind === "rgb") copyText(`rgb(${c.r}, ${c.g}, ${c.b})`, `Copied RGB value`, c.hex);
+    if (kind === "hsl") copyText(`hsl(${c.h}, ${c.s}%, ${c.l}%)`, `Copied HSL value`, c.hex);
+    if (kind === "hsv") copyText(`hsv(${c.hv}, ${c.sv}%, ${c.v}%)`, `Copied HSV value`, c.hex);
+    if (kind === "name") copyText(c.cssName, `Copied "${c.cssName}"`, c.hex);
+  }
+
+  /* -------------------------------------------------------------------
+     6. EVENTS
+     ------------------------------------------------------------------- */
+
+  // Card grid: click delegation handles fav toggle, copy buttons, and opening the modal.
+  grid.addEventListener("click", (e) => {
+    const card = e.target.closest(".color-card");
+    if (!card) return;
+    const id = card.dataset.id;
+    const actionBtn = e.target.closest("[data-action]");
+
+    if (actionBtn) {
+      const action = actionBtn.dataset.action;
+      const c = colorById[id];
+      if (action === "fav") {
+        toggleFavorite(id);
+        const nowFav = state.favorites.includes(id);
+        actionBtn.classList.toggle("is-fav", nowFav);
+        actionBtn.setAttribute("aria-pressed", nowFav);
+        if (state.favOnly) renderGrid();
+        return;
+      }
+      if (action === "copy-hex") return copyForCard(c, "hex");
+      if (action === "copy-rgb") return copyForCard(c, "rgb");
+      if (action === "copy-hsl") return copyForCard(c, "hsl");
+      return;
+    }
+
+    openModal(id);
+  });
+
+  grid.addEventListener("keydown", (e) => {
+    if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("color-card")) {
+      e.preventDefault();
+      openModal(e.target.dataset.id);
+    }
+  });
+
+  // Search
+  searchInput.addEventListener("input", () => {
+    state.search = searchInput.value;
+    clearSearchBtn.hidden = state.search.length === 0;
+    renderGrid();
+  });
+  clearSearchBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    state.search = "";
+    clearSearchBtn.hidden = true;
+    renderGrid();
+    searchInput.focus();
+  });
+
+  // Category chips
+  categoryFilters.addEventListener("click", (e) => {
+    const chip = e.target.closest(".chip");
+    if (!chip) return;
+    categoryFilters.querySelectorAll(".chip").forEach((b) => b.classList.remove("is-active"));
+    chip.classList.add("is-active");
+    state.category = chip.dataset.category;
+    renderGrid();
+  });
+
+  // Sort
+  sortSelect.addEventListener("change", () => {
+    state.sort = sortSelect.value;
+    renderGrid();
+  });
+
+  // Favorites-only nav toggle
+  favToggleNav.addEventListener("click", () => {
+    state.favOnly = !state.favOnly;
+    favToggleNav.setAttribute("aria-pressed", state.favOnly);
+    renderGrid();
+  });
+
+  // Recently viewed strip
+  recentRow.addEventListener("click", (e) => {
+    const chip = e.target.closest(".recent-chip");
+    if (chip) openModal(chip.dataset.id);
+  });
+
+  // Dark mode
+  function applyTheme(theme) {
+    document.body.dataset.theme = theme;
+    darkModeToggle.setAttribute("aria-pressed", theme === "dark");
+    saveJSON("swatchbook:theme", theme === "dark"); // boolean stashed via JSON helper
+  }
+  darkModeToggle.addEventListener("click", () => {
+    const next = document.body.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(next);
+  });
+
+  // Modal events
+  modalClose.addEventListener("click", closeModal);
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) closeModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modalOverlay.hidden) closeModal();
+  });
+
+  modalFav.addEventListener("click", () => {
+    const id = modalFav.dataset.id;
+    toggleFavorite(id);
+    const isFav = state.favorites.includes(id);
+    modalFav.classList.toggle("is-fav", isFav);
+    modalFav.setAttribute("aria-pressed", isFav);
+  });
+
+  modalCopybar.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-action]");
+    if (!btn) return;
+    const c = colorById[modalCopybar.dataset.id];
+    const kind = btn.dataset.action.replace("copy-", "");
+    copyForCard(c, kind);
+  });
+
+  modalCodeblocks.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-action='copy-code']");
+    if (!btn) return;
+    const idx = Number(btn.dataset.codeIndex);
+    const code = modalCodeblocks._codes[idx];
+    copyText(code, "Code copied to clipboard");
+  });
+
+  // Scroll to top
+  window.addEventListener("scroll", () => {
+    scrollTopBtn.hidden = window.scrollY < 420;
+  }, { passive: true });
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  /* -------------------------------------------------------------------
+     7. INIT
+     ------------------------------------------------------------------- */
+  function init() {
+    buildCategoryChips();
+    buildSwatchStrip();
+
+    // Restore persisted theme (default: light)
+    let savedTheme = false;
+    try { savedTheme = JSON.parse(localStorage.getItem("swatchbook:theme")); } catch (e) { /* ignore */ }
+    if (savedTheme === true) applyTheme("dark");
+    else applyTheme("light");
+
+    document.getElementById("footerYear").textContent = new Date().getFullYear();
+
+    updateHeaderStats();
+    renderRecents();
+    renderGrid();
+  }
+
+  init();
+})();
+
+  </script>
+</body>
+</html>
